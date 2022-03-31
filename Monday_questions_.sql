@@ -34,20 +34,10 @@ group by staff_id;
 -- 1, 8,040
 
 -- 6. How many different district names are there?
-select address_id, COUNT(address_id)
-from store
-group by address_id;
--- 2
-
-select country_id, COUNT(country_id)
-from country
-group by country_id;
--- 109
-
-select city_id, COUNT(city_id)
-from city
-group by city_id;
---600
+select district, COUNT(district) 
+from address
+group by district;
+-- 378
 
 
 
@@ -69,34 +59,16 @@ where store_id = 1 and last_name like '__%es';
 
 
 -- 9. How many payment amounts (4.99, 5.99, etc.) had a number of rentals above 250 for customers with ids between 380 and 430? (use group by and having > 250)
-select customer_id, amount, COUNT(amount)
-from payment
-where customer_id between 380 and 430
-group by customer_id, amount
-;
-
 select amount, count(amount)
 from payment
+where customer_id between 380 and 430
 group by amount
 having COUNT(amount) > 250;
+-- 3
 
-select customer_id 
-from payment
-where customer_id between 380 and 430
-group by customer_id;
-
-select customer_id, amount, COUNT(amount)
-from payment
-where customer_id between 380 and 430
-group by customer_id, amount
-having COUNT(amount) > 250;
 
 -- 10. Within the film table, how many rating categories are there? And what rating has the most movies total?
 select rating, COUNT(rating)
 from film
 group by rating;
 -- 5 ratings PG-13 223
-
-
-
-
